@@ -1,7 +1,0 @@
-.git*
-build/
-test/
-.travis.yml
-*.iml
-.idea/
-npm-debug.log
