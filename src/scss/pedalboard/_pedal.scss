@@ -1,0 +1,26 @@
+.pedal {
+    overflow: hidden;
+
+    display: inline-block;
+    width: 100%;
+    max-width: 25rem;
+    margin: 0 $gutter $gutter 0;
+
+    background: $white;
+
+    border-radius: $border-radius;
+
+    font-size: 1rem;
+    vertical-align: top;
+
+    &__header {
+        padding: $padding-small $padding;
+
+        background: $gray-light;
+    }
+
+    &__content {
+        padding: $padding-small $padding;
+
+    }
+}

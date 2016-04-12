@@ -1,0 +1,20 @@
+.button {
+    padding: $padding-small;
+
+    background: $green;
+
+    border: 0;
+    outline: 0;
+
+    color: $white;
+
+    cursor: pointer;
+
+    &:hover {
+        background: lighten($green, 10);
+    }
+
+    &--full {
+        width: 100%;
+    }
+}
