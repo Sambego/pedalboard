@@ -1,4 +1,8 @@
+$pedal-transition-speed: .4s;
+
 .pedal {
+    will-change: opacity, transform;
+    position: relative;
     overflow: hidden;
 
     display: inline-block;
@@ -22,5 +26,27 @@
     &__content {
         padding: $padding-small $padding;
 
+    }
+
+    &.pedal-transition-enter {
+        transform: translate3d(0, -50%, 0);
+        opacity: 0;
+    }
+
+    &.pedal-transition-enter-active {
+        transition: all $pedal-transition-speed ease-in-out;
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    &.pedal-transition-leave {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    &.pedal-transition-leave-active {
+        transition: all $pedal-transition-speed ease-in-out;
+        transform: translate3d(0, -50%, 0);
+        opacity: 0;
     }
 }

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Pedal from './Pedal';
 
 export default class PedalboardComponent extends Component {
@@ -28,7 +29,9 @@ export default class PedalboardComponent extends Component {
     render() {
         return (
             <section className="pedalboard">
-                {this.renderPedals()}
+                <ReactCSSTransitionGroup transitionName="pedal-transition" transitionEnterTimeout={400} transitionLeaveTimeout={400}>
+                    {this.renderPedals()}
+                </ReactCSSTransitionGroup>
             </section>
         );
     }
