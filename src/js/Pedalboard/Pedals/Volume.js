@@ -3,12 +3,12 @@ import React, {Component, PropTypes} from 'react';
 export default class Volume extends Component {
     static propTypes = {
         pedalboard: PropTypes.object
-    }
+    };
 
     constructor(props) {
         super(props);
 
-        this.volume = props.pedalboard.createVolume();
+        this.volume = props.effect;
         this.state = {
             level: this.volume.level,
             mute: this.volume.mute
@@ -42,6 +42,7 @@ export default class Volume extends Component {
                         Level
                         <input
                             type="range"
+                            name="lvel"
                             min="0"
                             max="1"
                             step="0.1"

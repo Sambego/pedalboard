@@ -1,7 +1,12 @@
 .sidebar {
-    min-width: 5rem;
+    display: block;
+    max-width: 5rem;
     min-height: 100%;
-    padding: $gutter 0 0 0;
+    padding: $gutter $padding-small 0 $padding-small;
 
     background: $gray-dark;
+
+    &--inner {
+
+    }
 }

@@ -3,16 +3,17 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import Input from './Pedals/Input';
 import Volume from './Pedals/Volume';
+import Distortion from './Pedals/Distortion';
 
 export default class Pedal extends Component {
     static propTypes = {
-        pedalboard: PropTypes.object,
+        effect: PropTypes.object,
         type: PropTypes.string
-    }
+    };
 
     renderEffect() {
-        const {pedalboard} = this.props;
-        const effectProps = {pedalboard};
+        const {effect} = this.props;
+        const effectProps = {effect};
 
         switch (this.props.type) {
             case 'input':
@@ -20,6 +21,9 @@ export default class Pedal extends Component {
                 break;
             case 'volume':
                 return (<Volume {...effectProps}/>)
+                break;
+            case 'distortion':
+                return (<Distortion {...effectProps}/>)
                 break;
             default:
                 return (<Volume {...effectProps}/>)

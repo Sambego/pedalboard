@@ -1,14 +1,22 @@
-.button {
-    padding: $padding-small;
-
-    background: $green;
+@mixin button-reset() {
+    padding: 0;
 
     border: 0;
     outline: 0;
 
-    color: $white;
-
     cursor: pointer;
+}
+
+.button {
+    @include button-reset;
+
+    transition: background $transition-speed ease-in-out;
+
+    padding: $padding-small;
+
+    background: $green;
+
+    color: $white;
 
     &:hover {
         background: lighten($green, 10);
@@ -16,5 +24,28 @@
 
     &--full {
         width: 100%;
+    }
+
+    &--sidebar {
+        @include button-reset;
+
+        transition: background $transition-speed ease-in-out;
+
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 0 $padding 0;
+
+        background: lighten($gray-dark, 10);
+
+        border-radius: $border-radius;
+
+        font-size: .6rem;
+        line-height: 175%;
+        color: $white;
+        vertical-align: middle;
+
+        &:hover {
+            background: lighten($gray-dark, 12);
+        }
     }
 }
