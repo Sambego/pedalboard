@@ -1,4 +1,5 @@
 import Immutable from 'Immutable';
+import uuid from 'uuid';
 import * as actions from './PedalboardActions';
 
 export default function PedalboardReducer(state, action) {
@@ -7,8 +8,10 @@ export default function PedalboardReducer(state, action) {
 
     switch (action.type) {
         case actions.ADD:
-            const uuid = pedals.count();
-            return state.setIn(['pedalboard', 'pedals', uuid], Immutable.fromJS(action.pedal));
+            const highestOrderPedal = pedals.sortBy(pedal => pedal.order).last();
+            const highestOrder = highestOrderPedal ? highestOrderPedal.get('order') + 1 : 1;
+
+            return state.setIn(['pedalboard', 'pedals', uuid.v1()], Immutable.fromJS(action.pedal).merge({order: highestOrder}));
         case actions.REMOVE:
             return state.deleteIn(['pedalboard', 'pedals', action.id]);
         case actions.TOGGLE:

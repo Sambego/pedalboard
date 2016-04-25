@@ -5,7 +5,7 @@ export default class Distortion extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
         fields: PropTypes.object.isRequired,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
     };
 

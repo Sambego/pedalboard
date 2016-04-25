@@ -32,12 +32,13 @@ export default class PedalboardComponent extends Component {
     }
 
     renderPedals() {
-        return this.props.pedals.map((pedal, index) => {
+        console.log(this.props.pedals);
+        return this.props.pedals.map((pedal) => {
             const props = {
                 effect: pedal.effect,
                 fields: pedal.fields,
-                id: index,
-                key: index,
+                id: pedal.id,
+                key: pedal.id,
                 switchedOn: pedal.switchedOn,
                 onRemove: this.props.onRemove,
                 onToggle: this.props.onToggle,

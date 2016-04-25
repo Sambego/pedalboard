@@ -8,7 +8,7 @@ import Distortion from './Pedals/Distortion';
 export default class Pedal extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         switchedOn: PropTypes.bool.isRequired,
         onRemove: PropTypes.func.isRequired,
         onToggle: PropTypes.func.isRequired,

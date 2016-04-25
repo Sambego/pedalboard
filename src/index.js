@@ -11,7 +11,7 @@ import AppContainer from './js/AppContainer';
 
 const initialState = Immutable.fromJS({
     pedalboard: {
-        pedals: [],
+        pedals: {},
     },
 });
 

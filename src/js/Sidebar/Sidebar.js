@@ -26,11 +26,17 @@ export default class Sidebar extends Component {
         }];
 
         return effects.map((effect, index) => {
-            const label = `Add a ${effect.type} pedal`;
             const effectNode = this.props.pedalboard[`create${_.capitalize(effect.type)}`];
-            const fields = effect.fields || null;
+            const props = {
+                key: index,
+                label: `Add a ${effect.type} pedal`,
+                type: effect.type,
+                effect: effectNode,
+                fields: effect.fields || null,
+                onAdd: this.props.onAdd,
+            }
 
-            return <SidebarButton key={index} label={label} type={effect.type} effect={effectNode} fields={fields} onAdd={this.props.onAdd}/>;
+            return <SidebarButton {...props}/>;
         });
     }
 

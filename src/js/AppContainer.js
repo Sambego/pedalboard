@@ -4,7 +4,7 @@ import * as actions from './Pedalboard/PedalboardActions';
 
 const mapStateToProps = (state, props) => {
     return {
-        pedals: state.getIn(['pedalboard', 'pedals'], []).valueSeq().toJS(),
+        pedals: state.getIn(['pedalboard', 'pedals'], []).map((value, id) => value.merge({id: id})).valueSeq().sortBy(pedal => pedal.get('order')).toJS(),
     };
 };
 
