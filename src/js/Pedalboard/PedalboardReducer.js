@@ -14,7 +14,6 @@ export default function PedalboardReducer(state, action) {
         case actions.TOGGLE:
             return state.updateIn(['pedalboard', 'pedals', action.id], pedal => pedal.set('switchedOn', !pedal.get('switchedOn')));
         case actions.UPDATE_PEDAL_PARAM:
-            action.effect[action.field] = action.value;
             return state.updateIn(['pedalboard', 'pedals', action.id, 'fields'], fields => fields.set(action.field, action.value));
         default:
             return state;

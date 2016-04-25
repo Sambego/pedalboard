@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
         onToggle: id => {
                 dispatch(actions.togglePedal(id));
         },
-        onUpdateEffectParam: (id, effect, field, value) => {
-            dispatch(actions.updatePedalParam(id, effect, field, value));
+        onUpdateEffectParam: (id, field, value) => {
+            dispatch(actions.updatePedalParam(id, field, value));
         }
     }
 }

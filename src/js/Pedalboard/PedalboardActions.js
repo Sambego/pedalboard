@@ -25,11 +25,10 @@ export function togglePedal(id) {
     };
 };
 
-export function updatePedalParam(id, effect, field, value) {
+export function updatePedalParam(id, field, value) {
     return {
         type: UPDATE_PEDAL_PARAM,
         id,
-        effect,
         field,
         value,
     };

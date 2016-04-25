@@ -9,8 +9,14 @@ export default class Distortion extends Component {
         onUpdateEffectParam: PropTypes.func.isRequired,
     };
 
+    componentWillReceiveProps(props) {
+        for (let key in props.fields) {
+            props.effect[key] = props.fields[key];
+        }
+    }
+
     updateState(field, value) {
-        this.props.onUpdateEffectParam(this.props.id, this.props.effect, field, value);
+        this.props.onUpdateEffectParam(this.props.id, field, value);
     }
 
     handleIntensity(intensity) {
