@@ -32,7 +32,6 @@ export default class PedalboardComponent extends Component {
     }
 
     renderPedals() {
-        console.log(this.props.pedals);
         return this.props.pedals.map((pedal) => {
             const props = {
                 effect: pedal.effect,
