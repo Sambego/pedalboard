@@ -7,13 +7,20 @@ import Distortion from './Pedals/Distortion';
 
 export default class Pedal extends Component {
     static propTypes = {
-        effect: PropTypes.object,
-        type: PropTypes.string
+        effect: PropTypes.object.isRequired,
+        id: PropTypes.number.isRequired,
+        onRemove: PropTypes.func.isRequired,
+        onUpdateEffectParam: PropTypes.func.isRequired,
+        type: PropTypes.string.isRequired
     };
 
+    handleClose() {
+        this.props.onRemove(this.props.id);
+    }
+
     renderEffect() {
-        const {effect} = this.props;
-        const effectProps = {effect};
+        const {effect, fields, id, onUpdateEffectParam} = this.props;
+        const effectProps = {effect, fields, id, onUpdateEffectParam};
 
         switch (this.props.type) {
             case 'input':
@@ -32,11 +39,10 @@ export default class Pedal extends Component {
 
     render() {
         const classes = classnames('pedal', `pedal--${this.props.type}`);
-        const title = _.capitalize(this.props.type);
 
         return (
             <div className={classes}>
-                <header className="pedal__header">{title}</header>
+                <button className="button--close" onClick={::this.handleClose}>&times;</button>
                 <section className="pedal__content">{this.renderEffect()}</section>
             </div>
         );

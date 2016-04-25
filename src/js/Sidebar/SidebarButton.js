@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from 'react';
 export default class SidebarButton extends Component {
     static propTypes = {
         effect: PropTypes.func.isRequired,
+        fields: PropTypes.object,
         label: PropTypes.string,
         onAdd: PropTypes.func.isRequired,
         type: PropTypes.string,
@@ -12,6 +13,7 @@ export default class SidebarButton extends Component {
         this.props.onAdd({
             type: this.props.type,
             effect: this.props.effect(),
+            fields: this.props.fields,
         })
     }
 

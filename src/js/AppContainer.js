@@ -13,8 +13,11 @@ const mapDispatchToProps = (dispatch) => {
         onAdd: (pedal) => {
             dispatch(actions.addPedal(pedal));
         },
-        onDelete: (id) => {
+        onRemove: (id) => {
             dispatch(actions.removePedal(id));
+        },
+        onUpdateEffectParam: (id, effect, field, value) => {
+            dispatch(actions.updatePedalParam(id, effect, field, value));
         }
     }
 }

@@ -10,16 +10,27 @@
 .button {
     @include button-reset;
 
-    transition: background $transition-speed ease-in-out;
+    will-change: border-color, color;
+    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
 
     padding: $padding-small;
 
-    background: $green;
+    background: transparent;
 
-    color: $white;
+    border: 1px solid currentColor;
+    border-radius: $border-radius;
+
+    font-size: .8rem;
+    font-weight: bold;
+    color: $gray-med;
+    text-transform: uppercase;
 
     &:hover {
-        background: lighten($green, 10);
+        border-color: currentColor;
+    }
+
+    &--active {
+        color: $green;
     }
 
     &--full {
@@ -29,23 +40,54 @@
     &--sidebar {
         @include button-reset;
 
-        transition: background $transition-speed ease-in-out;
+        will-change: background, padding;
+        transition: background $transition-speed ease-in-out, padding $transition-speed ease-in-out;
 
-        width: 3.5rem;
-        height: 3.5rem;
-        margin: 0 0 $padding 0;
+        width: 100%;
+        height: 5rem;
+        margin: 0;
 
-        background: lighten($gray-dark, 10);
-
-        border-radius: $border-radius;
+        background: transparent;
 
         font-size: .6rem;
-        line-height: 175%;
+        line-height: 833%;
         color: $white;
         vertical-align: middle;
 
         &:hover {
-            background: lighten($gray-dark, 12);
+            padding: 0 0 0 .4rem;
+
+            background: $green;
+        }
+    }
+
+    &--close {
+        @include button-reset;
+
+        will-change: transform;
+        transition: all $transition-speed ease-in-out;
+
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+
+        width: 2rem;
+        height: 2rem;
+
+        background: $gray-med;
+
+        border: 1px solid darken($gray-med, 5);
+        border-radius: 50%;
+
+        color: $white;
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 100%;
+        text-align: center;
+        vertical-align: middle;
+
+        &:hover {
+            transform: rotate(90deg);
         }
     }
 }

@@ -1,46 +1,35 @@
 import React, {Component, PropTypes} from 'react';
+import classnames from 'classnames';
 
 export default class Distortion extends Component {
     static propTypes = {
-        pedalboard: PropTypes.object
+        effect: PropTypes.object.isRequired,
+        fields: PropTypes.object.isRequired,
+        id: PropTypes.number.isRequired,
+        onUpdateEffectParam: PropTypes.func.isRequired,
     };
 
-    constructor(props) {
-        super(props);
-
-        this.distortion = props.effect;
-        this.state = {
-            intensity: this.distortion.intensity,
-            gain: this.distortion.gain,
-            lowPassFilter: this.distortion.lowPassFilter
-        }
-    }
-
-    updateState() {
-        this.setState({
-            intensity: this.distortion.intensity,
-            gain: this.distortion.gain,
-            lowPassFilter: this.distortion.lowPassFilter
-        });
+    updateState(field, value) {
+        this.props.onUpdateEffectParam(this.props.id, this.props.effect, field, value);
     }
 
     handleIntensity(intensity) {
-        this.distortion.intensity = volume.currentTarget.value;
-        this.updateState();
+        this.updateState('intensity', intensity.currentTarget.value);
     }
 
     handleGain(gain) {
-        this.distortion.gain = volume.currentTarget.value;
-        this.updateState();
+        this.updateState('gain', gain.currentTarget.value);
     }
 
     handleLowPassFilter() {
-        this.distortion.lowPassFilter = !this.distortion.lowPassFilter;
-        this.updateState();
+        this.updateState('lowPassFilter', !this.props.fields.lowPassFilter);
     }
 
     render() {
-        let lowPassFilterLabel = `Turn lowpass-filter ${this.state.lowPassFilter ? 'off' : 'on'}`;
+        const lowPassFilterLabel = `Turn lowpass-filter ${this.props.fields.lowPassFilter ? 'off' : 'on'}`;
+        const buttonClasses = classnames('button', 'button--full', {
+            'button--active': this.props.fields.lowPassFilter
+        });
 
         return (
             <div className="form">
@@ -54,7 +43,7 @@ export default class Distortion extends Component {
                             max="1"
                             step="0.1"
                             className="input--range"
-                            value={this.state.intensity}
+                            value={this.props.fields.intensity}
                             onChange={::this.handleIntensity}
                         />
                     </label>
@@ -70,7 +59,7 @@ export default class Distortion extends Component {
                             max="1"
                             step="0.1"
                             className="input--range"
-                            value={this.state.gain}
+                            value={this.props.fields.gain}
                             onChange={::this.handleGain}
                         />
                     </label>
@@ -78,7 +67,7 @@ export default class Distortion extends Component {
 
                 <div className="form__row">
                     <button
-                        className="button button--full"
+                        className={buttonClasses}
                         onClick={::this.handleLowPassFilter}
                     >{lowPassFilterLabel}</button>
                 </div>

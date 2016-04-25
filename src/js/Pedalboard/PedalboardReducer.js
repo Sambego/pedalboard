@@ -7,9 +7,13 @@ export default function PedalboardReducer(state, action) {
 
     switch (action.type) {
         case actions.ADD:
-            return state.setIn(['pedalboard', 'pedals', `${pedals.count()}`], Immutable.fromJS(action.pedal));
+            const uuid = pedals.count();
+            return state.setIn(['pedalboard', 'pedals', uuid], Immutable.fromJS(action.pedal));
         case actions.REMOVE:
-            return state.deleteIn('pedalboard', 'pedals', `${action.id}`);
+            return state.deleteIn(['pedalboard', 'pedals', action.id]);
+        case actions.UPDATE_PEDAL_PARAM:
+            action.effect[action.field] = action.value;
+            return state.updateIn(['pedalboard', 'pedals', action.id, 'fields'], fields => fields.set(action.field, action.value));
         default:
             return state;
     }

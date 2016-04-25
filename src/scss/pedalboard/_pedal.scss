@@ -3,7 +3,6 @@ $pedal-transition-speed: .4s;
 .pedal {
     will-change: opacity, transform;
     position: relative;
-    overflow: hidden;
 
     display: inline-block;
     width: 100%;
@@ -12,20 +11,20 @@ $pedal-transition-speed: .4s;
 
     background: $white;
 
+    border: 1px solid $gray-med;
     border-radius: $border-radius;
 
     font-size: 1rem;
     vertical-align: top;
 
-    &__header {
-        padding: $padding-small $padding;
-
-        background: $gray-light;
+    &:hover {
+        .button--close {
+            opacity: 1;
+        }
     }
 
     &__content {
         padding: $padding-small $padding;
-
     }
 
     &.pedal-transition-enter {
@@ -47,6 +46,10 @@ $pedal-transition-speed: .4s;
     &.pedal-transition-leave-active {
         transition: all $pedal-transition-speed ease-in-out;
         transform: translate3d(0, -50%, 0);
+        opacity: 0;
+    }
+
+    .button--close {
         opacity: 0;
     }
 }

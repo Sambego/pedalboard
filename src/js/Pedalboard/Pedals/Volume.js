@@ -1,39 +1,46 @@
 import React, {Component, PropTypes} from 'react';
+import classnames from 'classnames';
 
 export default class Volume extends Component {
     static propTypes = {
-        pedalboard: PropTypes.object
+        effect: PropTypes.object.isRequired,
+        fields: PropTypes.object.isRequired,
+        id: PropTypes.number.isRequired,
+        onUpdateEffectParam: PropTypes.func.isRequired,
     };
 
-    constructor(props) {
-        super(props);
-
-        this.volume = props.effect;
-        this.state = {
-            level: this.volume.level,
-            mute: this.volume.mute
-        }
-    }
-
-    updateState() {
-        this.setState({
-            mute: this.volume.mute,
-            level: this.volume.level
-        });
+    updateState(field, value) {
+        this.props.onUpdateEffectParam(this.props.id, this.props.effect, field, value);
     }
 
     handleVolume(volume) {
-        this.volume.level = volume.currentTarget.value;
-        this.updateState();
+        const level = parseFloat(volume.currentTarget.value);
+
+        this.updateState('level', level);
+
+        if (this.props.fields.mute && level > 0) {
+            this.updateState('mute', false);
+        } else if (!this.props.fields.mute && level === 0) {
+            this.updateState('mute', true);
+        }
     }
 
     handleMute() {
-        this.volume.mute = !this.volume.mute;
-        this.updateState();
+        const muted = !this.props.fields.mute;
+        this.updateState('mute', muted);
+
+        if (muted) {
+            this.updateState('level', 0);
+        } else {
+            this.updateState('level', 1);
+        }
     }
 
     render() {
-        let muteLabel = this.state.mute ? 'Unmute' : 'Mute';
+        const muteLabel = this.props.fields.mute ? 'Unmute' : 'Mute';
+        const buttonClasses = classnames('button', 'button--full', {
+            'button--active': this.props.fields.mute
+        });
 
         return (
             <div className="form">
@@ -47,7 +54,7 @@ export default class Volume extends Component {
                             max="1"
                             step="0.1"
                             className="input--range"
-                            value={this.state.level}
+                            value={this.props.fields.level}
                             onChange={::this.handleVolume}
                         />
                     </label>
@@ -55,7 +62,7 @@ export default class Volume extends Component {
 
                 <div className="form__row">
                     <button
-                        className="button button--full"
+                        className={buttonClasses}
                         onClick={::this.handleMute}
                     >{muteLabel}</button>
                 </div>
