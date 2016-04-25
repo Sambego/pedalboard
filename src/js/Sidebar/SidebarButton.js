@@ -11,9 +11,10 @@ export default class SidebarButton extends Component {
 
     handleAdd() {
         this.props.onAdd({
-            type: this.props.type,
             effect: this.props.effect(),
             fields: this.props.fields,
+            switchedOn: true,
+            type: this.props.type,
         })
     }
 

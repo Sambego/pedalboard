@@ -10,11 +10,14 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAdd: (pedal) => {
+        onAdd: pedal => {
             dispatch(actions.addPedal(pedal));
         },
-        onRemove: (id) => {
+        onRemove: id => {
             dispatch(actions.removePedal(id));
+        },
+        onToggle: id => {
+                dispatch(actions.togglePedal(id));
         },
         onUpdateEffectParam: (id, effect, field, value) => {
             dispatch(actions.updatePedalParam(id, effect, field, value));

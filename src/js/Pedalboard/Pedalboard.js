@@ -5,23 +5,28 @@ import Pedal from './Pedal';
 export default class PedalboardComponent extends Component {
     static propTypes = {
         onRemove: PropTypes.func.isRequired,
+        onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
         pedals: PropTypes.array,
         pedalboard: PropTypes.object,
     };
 
-    componentWillUpdate(props) {
+    componentWillUpdate() {
         this.props.pedals.forEach(pedal => {
             pedal.effect.disconnect();
         });
     }
 
-    componentDidUpdate(props) {
-        this.props.pedals.forEach((pedal, index) => {
-            if (index === (this.props.pedals.length - 1)) {
+    componentDidUpdate() {
+        const switchedOnPedals = this.props.pedals.filter(pedal => {
+            return pedal.switchedOn;
+        });
+
+        switchedOnPedals.forEach((pedal, index) => {
+            if (index === (switchedOnPedals.length - 1)) {
                 pedal.effect.connect(this.props.pedalboard.createOutput());
             } else {
-                pedal.effect.connect(this.props.pedals[index + 1].effect)
+                pedal.effect.connect(switchedOnPedals[index + 1].effect)
             }
         });
     }
@@ -29,13 +34,15 @@ export default class PedalboardComponent extends Component {
     renderPedals() {
         return this.props.pedals.map((pedal, index) => {
             const props = {
-                id: index,
-                key: index,
-                type: pedal.type,
                 effect: pedal.effect,
                 fields: pedal.fields,
+                id: index,
+                key: index,
+                switchedOn: pedal.switchedOn,
                 onRemove: this.props.onRemove,
+                onToggle: this.props.onToggle,
                 onUpdateEffectParam: this.props.onUpdateEffectParam,
+                type: pedal.type,
             };
 
             return <Pedal {...props}/>;

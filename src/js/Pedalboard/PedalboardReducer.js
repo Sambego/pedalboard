@@ -11,6 +11,8 @@ export default function PedalboardReducer(state, action) {
             return state.setIn(['pedalboard', 'pedals', uuid], Immutable.fromJS(action.pedal));
         case actions.REMOVE:
             return state.deleteIn(['pedalboard', 'pedals', action.id]);
+        case actions.TOGGLE:
+            return state.updateIn(['pedalboard', 'pedals', action.id], pedal => pedal.set('switchedOn', !pedal.get('switchedOn')));
         case actions.UPDATE_PEDAL_PARAM:
             action.effect[action.field] = action.value;
             return state.updateIn(['pedalboard', 'pedals', action.id, 'fields'], fields => fields.set(action.field, action.value));

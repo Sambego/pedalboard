@@ -9,13 +9,19 @@ export default class Pedal extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
         id: PropTypes.number.isRequired,
+        switchedOn: PropTypes.bool.isRequired,
         onRemove: PropTypes.func.isRequired,
+        onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
         type: PropTypes.string.isRequired
     };
 
     handleClose() {
         this.props.onRemove(this.props.id);
+    }
+
+    handleToggle() {
+        this.props.onToggle(this.props.id);
     }
 
     renderEffect() {
@@ -38,12 +44,19 @@ export default class Pedal extends Component {
     }
 
     render() {
-        const classes = classnames('pedal', `pedal--${this.props.type}`);
+        const pedalClasses = classnames('pedal', `pedal--${this.props.type}`);
+        const toggleLabel = this.props.switchedOn ? 'off' : 'on';
+        const toggleClasses = classnames('button', 'button--full', {
+            'button--active': this.props.switchedOn
+        });
 
         return (
-            <div className={classes}>
+            <div className={pedalClasses}>
                 <button className="button--close" onClick={::this.handleClose}>&times;</button>
-                <section className="pedal__content">{this.renderEffect()}</section>
+                <section className="pedal__content">
+                    {this.renderEffect()}
+                    <button className={toggleClasses} onClick={::this.handleToggle}>Switch {toggleLabel}</button>
+                </section>
             </div>
         );
     }

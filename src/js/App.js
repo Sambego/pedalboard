@@ -7,6 +7,7 @@ export default class App extends Component {
     static propTypes = {
         onAdd: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
+        onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
         pedals: PropTypes.array,
     };
@@ -23,6 +24,7 @@ export default class App extends Component {
 
         const pedalboardProps = {
             onRemove: this.props.onRemove,
+            onToggle: this.props.onToggle,
             onUpdateEffectParam: this.props.onUpdateEffectParam,
             pedalboard: this.props.pedalboard,
             pedals: this.props.pedals,
