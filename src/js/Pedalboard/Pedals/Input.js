@@ -15,7 +15,6 @@ export default class Input extends Component {
     render() {
         return (
             <div>
-                Input effect
             </div>
         );
     }

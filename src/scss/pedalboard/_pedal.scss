@@ -11,8 +11,9 @@ $pedal-transition-speed: .4s;
 
     background: $white;
 
-    border: 1px solid $gray-med;
+    border: 1px solid $blue;
     border-radius: $border-radius;
+    box-shadow: 10px 10px 20px 0 rgba(0,0,0, .05);
 
     font-size: 1rem;
     vertical-align: top;
@@ -23,8 +24,25 @@ $pedal-transition-speed: .4s;
         }
     }
 
+    &__header {
+        padding: 1rem;
+
+        background: rgba($blue, .3);
+
+        border-radius: $border-radius $border-radius 0 0;
+    }
+
+    &__title {
+        margin: 0;
+
+        color: darken($blue, 5);
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-align: center;
+    }
+
     &__content {
-        padding: $padding-small $padding;
+        padding: $padding;
     }
 
     &.pedal-transition-enter {

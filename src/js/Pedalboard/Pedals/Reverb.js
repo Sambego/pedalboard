@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 
-export default class Volume extends Component {
+export default class Reverb extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
         fields: PropTypes.object.isRequired,
@@ -19,33 +19,17 @@ export default class Volume extends Component {
         this.props.onUpdateEffectParam(this.props.id, field, value);
     }
 
-    handleVolume(volume) {
-        const level = parseFloat(volume.currentTarget.value);
-
-        this.updateState('level', level);
-
-        if (this.props.fields.mute && level > 0) {
-            this.updateState('mute', false);
-        } else if (!this.props.fields.mute && level === 0) {
-            this.updateState('mute', true);
-        }
+    handleLevel(level) {
+        this.updateState('level', level.currentTarget.value);
     }
 
-    handleMute() {
-        const muted = !this.props.fields.mute;
-        this.updateState('mute', muted);
-
-        if (muted) {
-            this.updateState('level', 0);
-        } else {
-            this.updateState('level', 1);
-        }
+    handleDepth(depth) {
+        this.updateState('depth', depth.currentTarget.value);
     }
 
     render() {
-        const muteLabel = this.props.fields.mute ? 'Unmute' : 'Mute';
         const buttonClasses = classnames('button', 'button--full', {
-            'button--active': this.props.fields.mute
+            'button--active': this.props.fields.lowPassFilter
         });
 
         return (
@@ -60,17 +44,26 @@ export default class Volume extends Component {
                             max="1"
                             step="0.1"
                             className="input--range"
-                            value={this.props.fields.level}
-                            onChange={::this.handleVolume}
+                            value={this.props.fields.delay}
+                            onChange={::this.handleLevel}
                         />
                     </label>
                 </div>
 
                 <div className="form__row">
-                    <button
-                        className={buttonClasses}
-                        onClick={::this.handleMute}
-                    >{muteLabel}</button>
+                    <label className="form__label">
+                        Depth
+                        <input
+                            type="range"
+                            name="Depth"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            className="input--range"
+                            value={this.props.fields.depth}
+                            onChange={::this.handleDepth}
+                        />
+                    </label>
                 </div>
             </div>
         );

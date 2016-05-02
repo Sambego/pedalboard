@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import _ from 'lodash';
 
 export default class SidebarButton extends Component {
     static propTypes = {
@@ -19,11 +20,12 @@ export default class SidebarButton extends Component {
     }
 
     render() {
-        const {label, icon} = this.props;
+        const {label, icon, type} = this.props;
+        const buttonLabel = _.capitalize(type);
 
         return (
             <button className="button--sidebar" title={label} onClick={::this.handleAdd}>
-                {this.props.type}
+                {buttonLabel}
             </button>
         );
     }

@@ -19,9 +19,30 @@ export default class Sidebar extends Component {
         }, {
             type: 'distortion',
             fields: {
-                intensity: 1,
-                gain: 1,
+                intensity: 80,
+                gain: 50,
                 lowPassFilter: false
+            }
+        }, {
+            type: 'delay',
+            fields: {
+                wet: 1,
+                speed: 1,
+                duration: 0.4
+            }
+        }, {
+            type: 'flanger',
+            fields: {
+                delay: 0.005,
+                depth: 0.002,
+                feedback: 0.5,
+                speed: 0.25
+            }
+        }, {
+            type: 'reverb',
+            fields: {
+                wet: 1,
+                level: 1
             }
         }];
 

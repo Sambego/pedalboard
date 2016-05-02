@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 
-export default class Distortion extends Component {
+export default class Delay extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
         fields: PropTypes.object.isRequired,
@@ -19,20 +19,19 @@ export default class Distortion extends Component {
         this.props.onUpdateEffectParam(this.props.id, field, value);
     }
 
-    handleIntensity(intensity) {
-        this.updateState('intensity', intensity.currentTarget.value);
+    handleWetness(wetness) {
+        this.updateState('wet', wetness.currentTarget.value);
     }
 
-    handleGain(gain) {
-        this.updateState('gain', gain.currentTarget.value);
+    handleSpeed(speed) {
+        this.updateState('speed', speed.currentTarget.value);
     }
 
-    handleLowPassFilter() {
-        this.updateState('lowPassFilter', !this.props.fields.lowPassFilter);
+    handleDuration(duration) {
+        this.updateState('duration', duration.currentTarget.value);
     }
 
     render() {
-        const lowPassFilterLabel = `Turn lowpass-filter ${this.props.fields.lowPassFilter ? 'off' : 'on'}`;
         const buttonClasses = classnames('button', 'button--full', {
             'button--active': this.props.fields.lowPassFilter
         });
@@ -41,41 +40,50 @@ export default class Distortion extends Component {
             <div className="form">
                 <div className="form__row">
                     <label className="form__label">
-                        intensity
+                        Wetness
                         <input
                             type="range"
-                            name="intensity"
-                            min="1"
-                            max="100"
-                            step="2"
+                            name="wetness"
+                            min="0"
+                            max="1"
+                            step="0.1"
                             className="input--range"
-                            value={this.props.fields.intensity}
-                            onChange={::this.handleIntensity}
+                            value={this.props.fields.wetness}
+                            onChange={::this.handleWetness}
                         />
                     </label>
                 </div>
 
                 <div className="form__row">
                     <label className="form__label">
-                        Gain
+                        Speed
                         <input
                             type="range"
-                            name="gain"
-                            min="1"
-                            max="150"
-                            step="5"
+                            name="speed"
+                            min="0"
+                            max="5"
+                            step="0.1"
                             className="input--range"
-                            value={this.props.fields.gain}
-                            onChange={::this.handleGain}
+                            value={this.props.fields.speed}
+                            onChange={::this.handleSpeed}
                         />
                     </label>
                 </div>
 
                 <div className="form__row">
-                    <button
-                        className={buttonClasses}
-                        onClick={::this.handleLowPassFilter}
-                    >{lowPassFilterLabel}</button>
+                    <label className="form__label">
+                        Duration
+                        <input
+                            type="range"
+                            name="gain"
+                            min="0"
+                            max="0.9"
+                            step="0.05"
+                            className="input--range"
+                            value={this.props.fields.duration}
+                            onChange={::this.handleDuration}
+                        />
+                    </label>
                 </div>
             </div>
         );
