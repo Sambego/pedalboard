@@ -12,12 +12,25 @@ export default class Pedal extends Component {
     static propTypes = {
         effect: PropTypes.object.isRequired,
         id: PropTypes.string.isRequired,
+        midi: PropTypes.object.isRequired,
         switchedOn: PropTypes.bool.isRequired,
+        onProcessMidiMessage: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
         onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
+        order: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired
     };
+
+    componentWillReceiveProps(props) {
+        const midi = props.midi;
+        const order = props.order;
+
+        if (midi.newEvent && midi.event === order) {
+            this.handleToggle();
+            this.props.onProcessMidiMessage();
+        }
+    }
 
     handleClose() {
         this.props.onRemove(this.props.id);
@@ -29,7 +42,8 @@ export default class Pedal extends Component {
 
     renderEffect() {
         const {effect, fields, id, onUpdateEffectParam} = this.props;
-        const effectProps = {effect, fields, id, onUpdateEffectParam};
+        const handleToggle = this.handleToggle;
+        const effectProps = {effect, fields, id, onUpdateEffectParam, handleToggle};
 
         switch (this.props.type) {
             case 'input':
@@ -67,6 +81,7 @@ export default class Pedal extends Component {
             <div className={pedalClasses}>
                 <button className="button--close" onClick={::this.handleClose}>&times;</button>
                 <header className="pedal__header">
+                    <p className="pedal__number">{this.props.order}</p>
                     <h2 className="pedal__title">{title}</h2>
                 </header>
                 <section className="pedal__content">

@@ -4,6 +4,8 @@ import Pedal from './Pedal';
 
 export default class PedalboardComponent extends Component {
     static propTypes = {
+        midi: PropTypes.object.isRequired,
+        onProcessMidiMessage: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
         onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
@@ -38,10 +40,13 @@ export default class PedalboardComponent extends Component {
                 fields: pedal.fields,
                 id: pedal.id,
                 key: pedal.id,
+                midi: this.props.midi,
                 switchedOn: pedal.switchedOn,
+                onProcessMidiMessage: this.props.onProcessMidiMessage,
                 onRemove: this.props.onRemove,
                 onToggle: this.props.onToggle,
                 onUpdateEffectParam: this.props.onUpdateEffectParam,
+                order: pedal.order,
                 type: pedal.type,
             };
 

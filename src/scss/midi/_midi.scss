@@ -1,0 +1,36 @@
+.midi-overlay {
+    will-change: opacity;
+    transition: opacity .4s ease-in-out, z-index 0 linear;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+
+    transform: translate3d(-50%, -50%, 0);
+    width: 10rem;
+    height: 10rem;
+
+    opacity: 0;
+    background: rgba($green, .8);
+
+    border-radius: $border-radius;
+    border: 1px solid $green;
+    box-shadow: 10px 10px 20px 0 rgba(0,0,0, .05);
+
+    color: $white;
+
+    &--active {
+        transition: opacity .4s ease-in-out, z-index 0 linear .4s;
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+.midi-event {
+    margin: 0;
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 10rem;
+}

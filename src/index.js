@@ -6,16 +6,19 @@ import {Provider} from 'react-redux'
 import {createStore, compose, combineReducers} from 'redux'
 import {persistState} from 'redux-devtools';
 import Immutable from 'immutable';
-import PedalboardReducer from './js/Pedalboard/PedalboardReducer'
+import AppReducer from './js/AppReducer'
 import AppContainer from './js/AppContainer';
 
 const initialState = Immutable.fromJS({
     pedalboard: {
         pedals: {},
     },
+    midi: {
+        newEvent: false,
+    }
 });
 
-const store = createStore(PedalboardReducer, Immutable.fromJS(initialState),
+const store = createStore(AppReducer, Immutable.fromJS(initialState),
     window.devToolsExtension ? window.devToolsExtension() : undefined
 );
 
