@@ -1,0 +1,93 @@
+$pedal-transition-speed: .4s;
+
+.pedal {
+    will-change: opacity, transform;
+    position: relative;
+
+    display: inline-block;
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 $gutter $gutter 0;
+
+    background: $white;
+
+    border: 1px solid $blue;
+    border-radius: $border-radius;
+    box-shadow: 10px 10px 20px 0 rgba(0,0,0, .05);
+
+    font-size: 1rem;
+    vertical-align: top;
+
+    &:hover {
+        .button--close {
+            opacity: 1;
+        }
+    }
+
+    &__header {
+        padding: 1rem;
+
+        background: rgba($blue, .3);
+
+        border-radius: $border-radius $border-radius 0 0;
+    }
+
+    &__number {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: inline-block;
+        height: 3.4rem;
+        width: 3rem;
+        margin: 0;
+
+        background: darken($blue, 5);
+
+        border-radius: $border-radius 0 0 0;
+
+        color: $white;
+        font-size: 1rem;
+        line-height: 3.4rem;
+        text-align: center;
+    }
+
+    &__title {
+        margin: 0;
+
+        color: darken($blue, 5);
+        font-size: 1.2rem;
+        font-weight: normal;
+        text-align: center;
+    }
+
+    &__content {
+        padding: $padding;
+    }
+
+    &.pedal-transition-enter {
+        transform: translate3d(0, -50%, 0);
+        opacity: 0;
+    }
+
+    &.pedal-transition-enter-active {
+        transition: all $pedal-transition-speed ease-in-out;
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    &.pedal-transition-leave {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    &.pedal-transition-leave-active {
+        transition: all $pedal-transition-speed ease-in-out;
+        transform: translate3d(0, -50%, 0);
+        opacity: 0;
+    }
+
+    .button--close {
+        opacity: 0;
+    }
+}

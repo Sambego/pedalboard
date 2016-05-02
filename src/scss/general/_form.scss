@@ -1,0 +1,87 @@
+.form {
+    &__row {
+        margin: 0 0 $padding-small 0;
+    }
+
+    &__label {
+        display: block;
+
+        color: darken($blue, 5);
+        font-size: .8rem;
+        font-weight: normal;
+        text-align: center;
+    }
+}
+
+@mixin input--range__thumb {
+    -webkit-appearance: none;
+
+    width: 1rem;
+    height: .625rem;
+
+    background: rgba(darken($blue, 20), .5);
+
+    border: none;
+    border-radius: .3125rem;
+
+    cursor: pointer;
+}
+
+@mixin input--range__track {
+    width: 100%;
+    height: .625rem;
+
+    background: linear-gradient(90deg, darken($blue, 5) 0%, darken($green, 5) 100%);
+
+    border-radius: .3125rem;
+
+    color: $green;
+
+    cursor: pointer;
+}
+
+.input--range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1rem;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    &::-webkit-slider-thumb {
+        @include input--range__thumb;
+    }
+
+    &::-moz-range-thumb {
+        @include input--range__thumb;
+    }
+
+    &::-ms-thumb {
+        @include input--range__thumb;
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include input--range__track;
+    }
+
+    &::-moz-range-track {
+        @include input--range__track;
+    }
+
+    &::-ms-track {
+        @include input--range__track;
+    }
+}

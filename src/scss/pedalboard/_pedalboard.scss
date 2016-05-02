@@ -1,0 +1,11 @@
+.pedalboard {
+    min-height: 100%;
+    width: 100%;
+    padding: $gutter;
+
+    &__inner {
+        width: 100%;
+
+        font-size: 0;
+    }
+}

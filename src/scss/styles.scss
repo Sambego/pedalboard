@@ -1,0 +1,16 @@
+// General
+@import "general/colors",
+        "general/variables",
+        "general/container",
+        "general/form",
+        "general/buttons";
+
+// Sidebar
+@import "sidebar/sidebar";
+
+// Pedalboard
+@import "pedalboard/pedalboard",
+        "pedalboard/pedal";
+
+// Midi
+@import "midi/midi";

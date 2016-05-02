@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100%;
+
+    background: linear-gradient(45deg, $blue 0%, $green 100%);
+}
