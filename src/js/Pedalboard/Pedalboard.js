@@ -1,16 +1,17 @@
 import React, {Component, PropTypes} from 'react';
+import {Output} from 'audio-effects';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Pedal from './Pedal';
 
 export default class PedalboardComponent extends Component {
     static propTypes = {
+        audioContext: PropTypes.object,
         midi: PropTypes.object.isRequired,
         onProcessMidiMessage: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
         onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
         pedals: PropTypes.array,
-        pedalboard: PropTypes.object,
     };
 
     componentWillUpdate() {
@@ -26,7 +27,7 @@ export default class PedalboardComponent extends Component {
 
         switchedOnPedals.forEach((pedal, index) => {
             if (index === (switchedOnPedals.length - 1)) {
-                pedal.effect.connect(this.props.pedalboard.createOutput());
+                pedal.effect.connect(new Output(this.props.audioContext));
             } else {
                 pedal.effect.connect(switchedOnPedals[index + 1].effect)
             }

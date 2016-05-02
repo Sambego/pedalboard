@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import SidebarButton from './SidebarButton';
+import * as pedalboard from 'audio-effects';
 
 export default class Sidebar extends Component {
     static proptypes = {
+        audioContext: PropTypes.obj,
         onAdd: PropTypes.func.isRequired,
-        pedalboard: PropTypes.object.isRequired,
     };
 
     renderButtons() {
@@ -47,7 +48,8 @@ export default class Sidebar extends Component {
         }];
 
         return effects.map((effect, index) => {
-            const effectNode = this.props.pedalboard[`create${_.capitalize(effect.type)}`];
+            const effectNode = () => {return new pedalboard[_.capitalize(effect.type)](this.props.audioContext)};
+
             const props = {
                 key: index,
                 label: `Add a ${effect.type} pedal`,
