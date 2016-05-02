@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import Pedalboard from 'pedalboard';
 import Sidebar from './Sidebar/Sidebar';
 import PedalboardComponent from './Pedalboard/Pedalboard';
 import Midi from './Midi/Midi'
@@ -17,22 +16,22 @@ export default class App extends Component {
     };
 
     static defaultProps = {
-        pedalboard: new Pedalboard()
+        audioContext: new AudioContext()
     };
 
     render() {
         const sidebarProps = {
+            audioContext: this.props.audioContext,
             onAdd: this.props.onAdd,
-            pedalboard: this.props.pedalboard,
         };
 
         const pedalboardProps = {
+            audioContext: this.props.audioContext,
             midi: this.props.midi,
             onProcessMidiMessage: this.props.onProcessMidiMessage,
             onRemove: this.props.onRemove,
             onToggle: this.props.onToggle,
             onUpdateEffectParam: this.props.onUpdateEffectParam,
-            pedalboard: this.props.pedalboard,
             pedals: this.props.pedals,
         };
 

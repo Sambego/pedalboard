@@ -22,12 +22,12 @@
     "webpack": "^1.12.15"
   },
   "dependencies": {
+    "audio-effects": "^1.0.10",
     "babel-polyfill": "^6.7.4",
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.7.2",
     "classnames": "^2.2.3",
     "lodash": "^4.10.0",
-    "pedalboard": "^1.0.8",
     "react": "^15.0.1",
     "react-addons-css-transition-group": "^15.0.1",
     "react-dom": "^15.0.1",

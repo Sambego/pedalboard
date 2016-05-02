@@ -32,7 +32,9 @@ export default class Midi extends Component {
                 const devices = this.getMidiDevices(midiAccess);
                 const currentDevice = _.find(devices, {name: 'Sambego'});
 
-                currentDevice.onmidimessage = ::this.handleMidiMessage;
+                if (currentDevice) {
+                    currentDevice.onmidimessage = ::this.handleMidiMessage;
+                }
             });
         }
     }
@@ -48,7 +50,7 @@ export default class Midi extends Component {
                 devices.push(input.value);
             }
         } else {
-            console.error('No devices detected!');
+            console.log('No midi devices detected!');
         }
 
         return devices;
