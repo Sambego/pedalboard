@@ -33,6 +33,7 @@ export default class Pedal extends Component {
     }
 
     handleClose() {
+        this.props.effect.destroy();
         this.props.onRemove(this.props.id);
     }
 
