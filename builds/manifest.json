@@ -1,6 +1,6 @@
 {
   "main": {
-    "js": "http://localhost:8080/buildsmain.js",
-    "css": "http://localhost:8080/buildsmain.css"
+    "js": "/buildsmain.js",
+    "css": "/buildsmain.css"
   }
 }
