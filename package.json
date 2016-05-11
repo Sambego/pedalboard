@@ -22,7 +22,7 @@
     "webpack": "^1.12.15"
   },
   "dependencies": {
-    "audio-effects": "^1.0.10",
+    "audio-effects": "^1.0.13",
     "babel-polyfill": "^6.7.4",
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.7.2",
