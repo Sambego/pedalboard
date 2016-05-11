@@ -18,8 +18,8 @@ const initialState = Immutable.fromJS({
     }
 });
 
-const store = createStore(AppReducer, Immutable.fromJS(initialState),
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+const store = createStore(AppReducer, Immutable.fromJS(initialState)/*,
+    window.devToolsExtension ? window.devToolsExtension() : undefined*/
 );
 
 render(
