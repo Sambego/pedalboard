@@ -53,7 +53,6 @@ export default class Sidebar extends Component {
         }];
 
         return effects.map((effect, index) => {
-            console.log(AudioEffects);
             const effectNode = () => {return new AudioEffects[_.capitalize(effect.type)](this.props.audioContext)};
 
             const props = {
