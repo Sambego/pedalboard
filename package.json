@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "hot": "webpack-dev-server --inline --hot"
+    "hot": "webpack-dev-server --inline --hot",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
