@@ -7,6 +7,7 @@ import Distortion from './Pedals/Distortion';
 import Delay from './Pedals/Delay';
 import Flanger from './Pedals/Flanger';
 import Reverb from './Pedals/Reverb';
+import Tremolo from './Pedals/Tremolo';
 
 export default class Pedal extends Component {
     static propTypes = {
@@ -64,6 +65,9 @@ export default class Pedal extends Component {
                 break;
             case 'reverb':
                 return (<Reverb {...effectProps}/>)
+                break;
+            case 'tremolo':
+                return (<Tremolo {...effectProps}/>)
                 break;
             default:
                 return (<Volume {...effectProps}/>)

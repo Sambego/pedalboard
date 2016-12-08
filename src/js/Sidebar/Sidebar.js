@@ -14,7 +14,7 @@ export default class Sidebar extends Component {
         }, {
             type: 'volume',
             fields: {
-                level: 1,
+                level: 0.5,
                 mute: false,
             }
         }, {
@@ -28,7 +28,7 @@ export default class Sidebar extends Component {
             type: 'delay',
             fields: {
                 wet: 1,
-                speed: 1,
+                speed: 0.5,
                 duration: 0.4
             }
         }, {
@@ -44,6 +44,11 @@ export default class Sidebar extends Component {
             fields: {
                 wet: 1,
                 level: 1
+            }
+        }, {
+            type: 'tremolo',
+            fields: {
+                speed: 1.5
             }
         }];
 
