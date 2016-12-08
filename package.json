@@ -26,7 +26,7 @@
     "redux-devtools": "3.2.0"
   },
   "dependencies": {
-    "audio-effects": "1.1.0",
+    "audio-effects": "1.2.0",
     "classnames": "2.2.3",
     "immutable": "3.8.1",
     "lodash": "4.10.0",
