@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
+import {Reverb as ReverbNode} from 'audio-effects';
+import irf from 'file!../../../audio/hall-reverb.ogg';
 
 export default class Reverb extends Component {
     static propTypes = {
@@ -8,6 +10,12 @@ export default class Reverb extends Component {
         id: PropTypes.string.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        ReverbNode.getInputResponseFile(irf).then(buffer => {
+            this.props.effect.buffer = buffer;
+        });
+    }
 
     componentWillReceiveProps(props) {
         for (let key in props.fields) {
