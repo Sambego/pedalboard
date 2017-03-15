@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import {Reverb as ReverbNode} from 'audio-effects';
-import irf from 'file!../../../audio/hall-reverb.ogg';
+import irf from 'file-loader!../../../audio/hall-reverb.ogg';
 
 export default class Reverb extends Component {
     static propTypes = {

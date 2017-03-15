@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import App from './App';
-import * as actions from './PedalBoard/PedalboardActions';
+import * as actions from './Pedalboard/PedalboardActions';
 import * as midiActions from './Midi/MidiActions';
 
 const mapStateToProps = (state, props) => {

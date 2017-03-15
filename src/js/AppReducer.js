@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import uuid from 'uuid';
-import * as pedalBoardActions from './PedalBoard/PedalboardActions';
+import * as pedalBoardActions from './Pedalboard/PedalboardActions';
 import * as midiActions from './Midi/MidiActions';
 
 export default function AppReducer(state, action, foo) {
