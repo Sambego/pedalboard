@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default class SidebarButton extends Component {
     static propTypes = {
-        effect: PropTypes.func.isRequired,
+        effect: PropTypes.object.isRequired,
         fields: PropTypes.object,
         label: PropTypes.string,
         onAdd: PropTypes.func.isRequired,
@@ -11,12 +11,18 @@ export default class SidebarButton extends Component {
     };
 
     handleAdd() {
-        this.props.onAdd({
-            effect: this.props.effect(),
+        console.log({
+            effect: this.props.effect,
             fields: this.props.fields,
             switchedOn: true,
             type: this.props.type,
-        })
+        });
+        this.props.onAdd({
+            effect: this.props.effect,
+            fields: this.props.fields,
+            switchedOn: true,
+            type: this.props.type,
+        });
     }
 
     render() {

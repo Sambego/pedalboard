@@ -9,10 +9,11 @@ export default function AppReducer(state, action, foo) {
 
     switch (action.type) {
         case pedalBoardActions.ADD:
-            const highestOrderPedal = pedals.sortBy(pedal => pedal.order).last();
+            const highestOrderPedal = pedals.sortBy(pedal => pedal.get('order')).last();
             const highestOrder = highestOrderPedal ? highestOrderPedal.get('order') + 1 : 1;
-
-            return state.setIn(['pedalboard', 'pedals', uuid.v1()], Immutable.fromJS(action.pedal).merge({order: highestOrder}));
+            const id = action.pedal.id || uuid.v1();
+            
+            return state.setIn(['pedalboard', 'pedals', id], Immutable.fromJS(action.pedal).merge({order: highestOrder}));
         case pedalBoardActions.REMOVE:
             return state.deleteIn(['pedalboard', 'pedals', action.id]);
         case pedalBoardActions.TOGGLE:

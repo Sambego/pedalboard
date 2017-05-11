@@ -84,7 +84,7 @@ export default class Flanger extends Component {
                             max="1"
                             step="0.1"
                             className="input--range"
-                            value={this.props.fields.Feedback}
+                            value={this.props.fields.feedback}
                             onChange={::this.handleFeedback}
                         />
                     </label>
