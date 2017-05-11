@@ -1,4 +1,4 @@
-import './scss/styles.scss';
+import '../scss/styles.scss';
 
 import React from 'react'
 import {render} from 'react-dom'
@@ -6,8 +6,8 @@ import {Provider} from 'react-redux'
 import {createStore, compose, combineReducers} from 'redux'
 import {persistState} from 'redux-devtools';
 import Immutable from 'immutable';
-import AppReducer from './js/AppReducer'
-import AppContainer from './js/AppContainer';
+import AppReducer from './AppReducer'
+import AppContainer from './AppContainer';
 
 const initialState = Immutable.fromJS({
     pedalboard: {
