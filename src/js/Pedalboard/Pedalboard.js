@@ -29,13 +29,13 @@ export default class PedalboardComponent extends Component {
             if (index === (switchedOnPedals.length - 1)) {
                 pedal.effect.connect(new Output(this.props.audioContext));
             } else {
-                pedal.effect.connect(switchedOnPedals[index + 1].effect)
+                pedal.effect.connect(switchedOnPedals[index + 1].effect);
             }
         });
     }
 
     renderPedals() {
-        return this.props.pedals.map((pedal) => {
+        return this.props.pedals.map(pedal => {
             const props = {
                 effect: pedal.effect,
                 fields: pedal.fields,
@@ -49,6 +49,7 @@ export default class PedalboardComponent extends Component {
                 onUpdateEffectParam: this.props.onUpdateEffectParam,
                 order: pedal.order,
                 type: pedal.type,
+                name: pedal.name,
             };
 
             return <Pedal {...props}/>;

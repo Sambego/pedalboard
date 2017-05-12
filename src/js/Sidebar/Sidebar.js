@@ -64,6 +64,7 @@ export default class Sidebar extends Component {
                 switchedOn: true,
                 type: effect.type,
                 id: message.id,
+                name: message.name,
             });
 
             console.log(`- Effect added by ${message.name} (${message.id}):`, effect);

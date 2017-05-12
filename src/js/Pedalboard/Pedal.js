@@ -14,13 +14,14 @@ export default class Pedal extends Component {
         effect: PropTypes.object.isRequired,
         id: PropTypes.string.isRequired,
         midi: PropTypes.object.isRequired,
+        name: PropTypes.string,
         switchedOn: PropTypes.bool.isRequired,
         onProcessMidiMessage: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
         onToggle: PropTypes.func.isRequired,
         onUpdateEffectParam: PropTypes.func.isRequired,
         order: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired
+        type: PropTypes.string.isRequired,
     };
 
     componentWillReceiveProps(props) {
@@ -49,37 +50,37 @@ export default class Pedal extends Component {
 
         switch (this.props.type) {
             case 'input':
-                return (<Input {...effectProps}/>)
+                return (<Input {...effectProps}/>);
                 break;
             case 'volume':
-                return (<Volume {...effectProps}/>)
+                return (<Volume {...effectProps}/>);
                 break;
             case 'distortion':
-                return (<Distortion {...effectProps}/>)
+                return (<Distortion {...effectProps}/>);
                 break;
             case 'delay':
-                return (<Delay {...effectProps}/>)
+                return (<Delay {...effectProps}/>);
                 break;
             case 'flanger':
-                return (<Flanger {...effectProps}/>)
+                return (<Flanger {...effectProps}/>);
                 break;
             case 'reverb':
-                return (<Reverb {...effectProps}/>)
+                return (<Reverb {...effectProps}/>);
                 break;
             case 'tremolo':
-                return (<Tremolo {...effectProps}/>)
+                return (<Tremolo {...effectProps}/>);
                 break;
             default:
-                return (<Volume {...effectProps}/>)
+                return (<Volume {...effectProps}/>);
         }
     }
 
     render() {
-        const title = _.capitalize(this.props.type);
+        const title = this.props.name ? _.capitalize(this.props.name) : _.capitalize(this.props.type);
         const pedalClasses = classnames('pedal', `pedal--${this.props.type}`);
         const toggleLabel = this.props.switchedOn ? 'off' : 'on';
         const toggleClasses = classnames('button', 'button--full', {
-            'button--active': this.props.switchedOn
+            'button--active': this.props.switchedOn,
         });
 
         return (
